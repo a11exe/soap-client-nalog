@@ -4,15 +4,19 @@
 состояния описанных в документации [(ws2.doc)](http://npchk.nalog.ru/ws2.doc).  
 
 # Used technologies
-Java 8
-Apache CXF
-XML
-JUnit
 
-#Install
++ Java 8
++ Apache CXF
++ XML
++ JUnit
+
+# Install
 git clone https://github.com/a11exe/soap-client-nalog
 
-#Run
-mvn clean install assembly:single
-java -jar target/fnl.jar
+# Run
+mvn clean install
+
+chcp 65001 (если запуск в console Windows UTF-8)
+
+java -jar target/fns.jar
 

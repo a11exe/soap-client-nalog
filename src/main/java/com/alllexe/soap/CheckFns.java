@@ -17,7 +17,7 @@ import unisoft.ws.fnsndscaws2.response.NdsResponse2.NP;
 
 public class CheckFns {
 
-    private FNSNDSCAWS2Port port;
+    private final FNSNDSCAWS2Port port;
 
     private final String responseFormat = "Дата запроса: %s, ИНН: %s, КПП: %s, Ответ: %s (%s)";
 
@@ -71,17 +71,13 @@ public class CheckFns {
 
     public List<String> ndsResponse2ToMessages(NdsResponse2 ndsResponse2) {
         List<String> messages = new ArrayList<>();
-
-        ndsResponse2.getNP().forEach(n->{
-            messages.add(String.format(responseFormat, n.getDT(), n.getINN(), n.getKPP(), n.getState(), getStateMsg(n, n.getState())));
-        });
-
+        ndsResponse2.getNP().forEach(n -> messages.add(String.format(responseFormat, n.getDT(), n.getINN(), n.getKPP(), n.getState(), getStateMsg(n, n.getState()))));
         return messages;
     }
 
     private String getStateMsg(NP n, String stateNum) {
-        String msg = "";
-        Integer num = Integer.valueOf(stateNum);
+        String msg;
+        Integer num = Integer.valueOf(stateNum) - 1;
         if (n.getINN().length() == 10) {
           msg = statesUL[num];
         } else {
